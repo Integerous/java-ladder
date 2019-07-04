@@ -20,7 +20,8 @@ public class Players {
     }
 
     public static Players of(String inputNames) {
-        return new Players(Arrays.stream(inputNames.trim().split(NAME_SEPARATOR))
+        return new Players(Arrays
+                .stream(inputNames.split(NAME_SEPARATOR))
                 .map(String::trim)
                 .map(Player::from)
                 .collect(Collectors.toList()));
