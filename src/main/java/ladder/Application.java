@@ -16,15 +16,14 @@ public class Application {
 
         Ladder ladder = Ladder.from(players, height);
 
-//        Map<Player, Result> resultMap = new HashMap<>();
-//        for (int i = 0; i < players.numberOfPlayers(); i++) {
-//            Player player = players.getPlayers().get(i);
-//            // i(position)에서 시작해서 사다리 타고 나서의 position
-//            int finalPosition = ladder.executeLines(i);
-//            result = results.get(finalPosition); // Results의 position위치의 Result
-//            resultMap.put(player, result);
-//        }
-
+        Map<Player, Result> resultMap = new HashMap<>(); //TODO: 클래스로 분리하기
+        for (int i = 0; i < players.numberOfPlayers(); i++) {
+            Player player = players.getPlayers().get(i);
+            int finalPosition = ladder.executeLines(i); //TODO: Position 객체 만들기
+            Result result = results.getResults().get(finalPosition);
+            resultMap.put(player, result);
+        }
         OutputView.drawLadder(players, ladder, results);
+        OutputView.printResultMap(resultMap);
     }
 }

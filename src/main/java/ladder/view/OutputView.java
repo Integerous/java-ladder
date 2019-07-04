@@ -2,6 +2,7 @@ package ladder.view;
 
 import ladder.domain.*;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -81,5 +82,13 @@ public class OutputView {
             return stringBuilder.append(BAR).toString();
         }
         return stringBuilder.append(EMPTY_SPACE).toString();
+    }
+
+    public static void printResultMap(Map<Player, Result> resultMap) {
+        System.out.println("실행 결과");
+        resultMap.entrySet()
+                .stream()
+                .forEach(result -> System.out.println(
+                                result.getKey().getName() + " : " + result.getValue().getResult()));
     }
 }
