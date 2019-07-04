@@ -23,4 +23,14 @@ public class ResultTest {
                     Result.from(exceedLengthResult);
                 }).withMessage(Result.ALERT_EXCEED_LENGTH_OF_RESULT);
     }
+
+    @Test
+    void 각_사다리의_결과가_공백이면_예외가_발생한다() {
+        String emptyResult = "";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Result.from(emptyResult);
+                }).withMessage(Result.ALERT_MISSING_RESULT);
+    }
 }
