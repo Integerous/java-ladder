@@ -1,9 +1,6 @@
 package ladder.view;
 
-import ladder.domain.Ladder;
-import ladder.domain.Line;
-import ladder.domain.Player;
-import ladder.domain.Players;
+import ladder.domain.*;
 
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -11,22 +8,23 @@ import java.util.stream.IntStream;
 import static ladder.view.InputView.printEmptyLine;
 
 public class OutputView {
-    private static final String MESSAGE_RESULT_TITLE = "실행결과";
+    private static final String MESSAGE_FOR_RESULT_TITLE = "사다리 결과";
     private static final String EMPTY_SPACE = "     ";
     private static final String BAR = "-----";
     private static final String COLUMN = "|";
     private static final String BLANK_TO_FILL_THE_NAME_SPACE = " ";
     private static final int SPACE_FOR_NAME = 5;
 
-    public static void printResult(Players players, Ladder ladder) {
+    public static void drawLadder(Players players, Ladder ladder, Results results) {
         printResultTitle();
         printPlayers(players);
         printLadder(ladder);
+        printResults(results);
     }
 
     private static void printResultTitle() {
         printEmptyLine();
-        System.out.println(MESSAGE_RESULT_TITLE);
+        System.out.println(MESSAGE_FOR_RESULT_TITLE);
         printEmptyLine();
     }
 
@@ -45,6 +43,23 @@ public class OutputView {
                 .mapToObj((integer) -> BLANK_TO_FILL_THE_NAME_SPACE)
                 .collect(Collectors.joining())
                 .concat(name);
+    }
+
+    private static void printResults(Results results) { //TODO: 위의 코드와 중복 해결하기
+        results.getResults().stream()
+                .map(OutputView::adjustNameLength)
+                .forEach(System.out::print);
+        printEmptyLine();
+    }
+
+    private static String adjustNameLength(Result result) {
+        String resultName = result.getResult();
+        int spaceForBlank = SPACE_FOR_NAME - resultName.length();
+
+        return IntStream.rangeClosed(0, spaceForBlank)
+                .mapToObj((integer) -> BLANK_TO_FILL_THE_NAME_SPACE)
+                .collect(Collectors.joining())
+                .concat(resultName);
     }
 
     private static void printLadder(Ladder ladder) {

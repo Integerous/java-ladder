@@ -25,7 +25,7 @@ public class Result {
         return new Result(inputResult);
     }
 
-    String getResult() {
+    public String getResult() {
         return result;
     }
 
