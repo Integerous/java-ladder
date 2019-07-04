@@ -3,6 +3,7 @@ package ladder.domain;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class ResultTest {
     @Test
@@ -11,5 +12,15 @@ public class ResultTest {
         Result result = Result.from(resultTest);
 
         assertThat(result.getResult()).isEqualTo(resultTest);
+    }
+
+    @Test
+    void 각_사다리의_결과가_다섯글자_이상이면_예외가_발생한다() {
+        String exceedLengthResult = "길이 제한을 초과하는 결과";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> {
+                    Result.from(exceedLengthResult);
+                });
     }
 }
