@@ -2,7 +2,7 @@ package ladder.domain;
 
 public class Result {
 
-    private static final String ALERT_EXCEED_LENGTH_OF_RESULT = "결과는 다섯글자 이내로 작성해주세요.";
+    static final String ALERT_EXCEED_LENGTH_OF_RESULT = "결과는 다섯글자 이내로 작성해주세요.";
     private static final int MAXIMUM_LENGTH_OF_RESULT = 5;
     private final String result;
 

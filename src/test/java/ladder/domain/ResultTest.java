@@ -21,6 +21,6 @@ public class ResultTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> {
                     Result.from(exceedLengthResult);
-                });
+                }).withMessage(Result.ALERT_EXCEED_LENGTH_OF_RESULT);
     }
 }
