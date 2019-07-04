@@ -84,9 +84,10 @@ public class OutputView {
         return stringBuilder.append(EMPTY_SPACE).toString();
     }
 
-    public static void printResultMap(Map<Player, Result> resultMap) {
+    public static void printResultMap(GameResult resultMap) {
         System.out.println("실행 결과");
-        resultMap.entrySet()
+        resultMap.getResultMap()
+                .entrySet()
                 .stream()
                 .forEach(result -> System.out.println(
                                 result.getKey().getName() + " : " + result.getValue().getResult()));
