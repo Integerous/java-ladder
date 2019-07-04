@@ -11,6 +11,7 @@ public class Application {
 
     public static void main(String[] args) {
         Players players = Players.of(InputView.askPlayers());
+        Results results = Results.from(InputView.askResults(), players.numberOfPlayers());
         Height height = Height.from(InputView.askHeight());
 
         Ladder ladder = Ladder.from(players, height);
