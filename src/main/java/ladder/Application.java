@@ -12,13 +12,11 @@ public class Application {
         Height height = Height.from(InputView.askHeight());
 
         Ladder ladder = Ladder.from(players, height);
-
         OutputView.drawLadder(players, ladder, results);
 
         GameResult gameResult = GameResult.of(players, ladder, results);
-
-//        InputView.askWhichResultToSqee();
-
+        String wantedPlayerName = InputView.askWhichResultToSee();
+        Player player = players.findPlayerByName(wantedPlayerName);
         OutputView.printResultMap(gameResult);
     }
 }
